@@ -1,0 +1,31 @@
+{
+  "name": "ng-arch",
+  "version": "0.0.1",
+  "description": "Aaaaaapp description here",
+  "author": "duhsokola",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DuhSokola/ng-arch.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0",
+    "npm": ">= 1.4.0"
+  },
+  "devDependencies": {
+    "bower": "1.5.3",
+    "gulp": "^3.9.0",
+    "htmlhint": "^0.9.7",
+    "jasmine-core": "^2.3.4",
+    "jshint": "2.8.0",
+    "jshint-log-reporter": "1.0.11",
+    "karma": "^0.13.10",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18",
+    "protractor": "2.4.0",
+    "travis": "0.1.1"
+  },
+  "private": true,
+  "main": "server.js"
+}

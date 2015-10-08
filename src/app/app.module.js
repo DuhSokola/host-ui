@@ -3,7 +3,7 @@
     'use strict';
 
     var dependencies = [
-        'ngRoute'
+        'routeConfig'
     ];
 
     var app = angular.module('hostApp', dependencies);

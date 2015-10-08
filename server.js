@@ -10,8 +10,8 @@ server.app = (function() {
 }());
 
 //Get the environment variables we need.
-var ipaddr  = process.env.OPENSHIFT_NODEJS_IP || "localhost";
-var port    = process.env.OPENSHIFT_NODEJS_PORT || 9000;
+var ipaddr  = "localhost";
+var port    =  9000;
 
 server.app.use(express.static(process.cwd()));
 

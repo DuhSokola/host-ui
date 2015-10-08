@@ -1,7 +1,13 @@
 ;(function(){
     'use strict';
 
-    app.config(function($routeProvider, $httpProvider){
+    var dependencies = [
+        'ngRoute'
+    ]
 
+    var route = angular.module('routeConfig',dependencies);
+
+    route.config(function($routeProvider){
+        console.log("asd2");
     });
 }());

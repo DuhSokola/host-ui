@@ -1,4 +1,4 @@
 .idea/**/*
 *.iml
 node_modules/**/*
-src/assets/bower_components/**/*
+src/externals/bower_components/**/*

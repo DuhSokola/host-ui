@@ -10,14 +10,14 @@ var wiredep = require('wiredep');
 gulp.task('bower', function () {
     wiredep({
         src: './src/index.html',
-        directory: './src/assets/bower_components/',
+        directory: './src/externals/bower_components/',
         bowerJson: require('./bower.json'),
     });
 });
 
 gulp.task('inject', function () {
     var target = gulp.src('./src/index.html');
-    var sources = gulp.src(['./src/**/*.js', './src/**/*.css','!./src/assets/bower_components/**/*.js','!./src/assets/bower_components/**/*.css'], {read: false});
+    var sources = gulp.src(['./src/**/*.js', './src/**/*.css','!./src/externals/bower_components/**/*.js','!./src/externals/bower_components/**/*.css'], {read: false});
     return target.pipe(inject(sources))
         .pipe(gulp.dest('./src'));
 });
@@ -35,7 +35,7 @@ gulp.task('serve', function() {
             baseDir: 'src'
         }
     });
-    gulp.watch(['app/**/*.js','app/**/*.html', 'assets/**/*.js', 'assets/**/*.html','*.html'], {cwd: 'src'}, reload);
+    gulp.watch(['app/**/*.js','app/**/*.html', 'externals/**/*.js', 'externals/**/*.html','*.html'], {cwd: 'src'}, reload);
 });
 
 /*

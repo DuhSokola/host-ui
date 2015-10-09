@@ -3,6 +3,7 @@
     'use strict';
 
     var dependencies = [
+        'pascalprecht.translate',
         'routeConfig'
     ];
 

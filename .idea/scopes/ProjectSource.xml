@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="ProjectSource" pattern="!file[ng-arch]:src/assets/bower_components//*&amp;&amp;!file[ng-arch]:node_modules//*&amp;&amp;!file[ng-arch]:.idea//*&amp;&amp;!file:ng-arch.iml&amp;&amp;!file:LICENSE" />
+</component>

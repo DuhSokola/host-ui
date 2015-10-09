@@ -1,7 +1,7 @@
 {
   "name": "ng-arch",
   "version": "0.0.1",
-  "description": "Aaaaaapp description here",
+  "description": "HostsApp for Autosalons",
   "author": "duhsokola",
   "license": "MIT",
   "repository": {
@@ -14,8 +14,9 @@
   },
   "devDependencies": {
     "bower": "^1.5.3",
-    "express": "^4.13.3",
+    "browser-sync": "^2.9.10",
     "gulp": "^3.9.0",
+    "gulp-inject": "^3.0.0",
     "htmlhint": "^0.9.7",
     "jasmine-core": "^2.3.4",
     "jshint": "^2.8.0",
@@ -25,7 +26,8 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "phantomjs": "^1.9.18",
     "protractor": "^2.5.0",
-    "travis": "^0.1.1"
+    "travis": "^0.1.1",
+    "wiredep": "^2.2.2"
   },
   "private": true,
   "main": "server.js"

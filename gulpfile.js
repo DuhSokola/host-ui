@@ -1,29 +1,46 @@
 var gulp = require('gulp');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
-var pkg = require('./package.json');
 
-gulp.task('default', function() {
-    // place code for your default task here
+
+/*
+ * Dependency Injection
+ */
+var inject = require('gulp-inject');
+var wiredep = require('wiredep');
+
+gulp.task('bower', function () {
+    wiredep({
+        src: './src/index.html',
+        directory: './src/assets/bower_components/',
+        bowerJson: require('./bower.json'),
+    });
 });
 
-gulp.task('build', function () {
-    return gulp.src('./src/*.js')
-        .pipe(concat(pkg.name + '.js'))
-        .pipe(gulp.dest('./dist'))
-        .pipe(rename(pkg.name + '.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./dist'));
+gulp.task('inject', function () {
+    var target = gulp.src('./src/index.html');
+    var sources = gulp.src(['./src/**/*.js', './src/**/*.css','!./src/assets/bower_components/**/*.js','!./src/assets/bower_components/**/*.css'], {read: false});
+    return target.pipe(inject(sources))
+        .pipe(gulp.dest('./src'));
 });
 
-gulp.task('lint', function () {
-    return gulp.src('./src/*.js')
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('jshint-stylish'));
+/*
+ * Server with BrowserSync
+ */
+
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+
+gulp.task('serve', function() {
+    browserSync({
+        server: {
+            baseDir: 'src'
+        }
+    });
+    gulp.watch(['app/**/*.js','app/**/*.html', 'assets/**/*.js', 'assets/**/*.html','*.html'], {cwd: 'src'}, reload);
 });
 
-gulp.task('clean', function () {
-    return gulp.src('./dist', { read: false })
-        .pipe(clean());
-});
+/*
+ * Combined Tasks
+ */
+gulp.task('injectDeps',['bower','inject']);
+
+

@@ -1,15 +1,14 @@
 {
   "name": "ng-arch",
   "version": "0.0.1",
-  "devDependencies": {
+  "dependencies": {
     "angular": "~1.4.7",
-    "jquery": "~2.1.4",
     "angular-mocks": "~1.4.7",
-    "angular-route": "~1.4.7",
-    "jquery-ui": "~1.11.4",
     "angular-resource": "~1.4.7",
-    "underscore": "~1.8.3",
+    "angular-route": "~1.4.7",
     "angular-translate": "~2.8.1",
-    "class.js": "~1.0.0"
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4",
+    "underscore": "~1.8.3"
   }
 }

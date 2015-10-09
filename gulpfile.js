@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-
+var debug = require('gulp-debug');
 
 /*
  * Dependency Injection
@@ -11,15 +11,27 @@ gulp.task('bower', function () {
     wiredep({
         src: './src/index.html',
         directory: './src/externals/bower_components/',
-        bowerJson: require('./bower.json'),
+        bowerJson: require('./bower.json')
     });
 });
 
 gulp.task('inject', function () {
     var target = gulp.src('./src/index.html');
-    var sources = gulp.src(['./src/**/*.js', './src/**/*.css','!./src/externals/bower_components/**/*.js','!./src/externals/bower_components/**/*.css'], {read: false});
-    return target.pipe(inject(sources))
-        .pipe(gulp.dest('./src'));
+
+    return target.pipe(inject(gulp.src(
+        [
+            'app/**/*.js',
+            'app/**/*.css',
+            'resources/style/**/*.css',
+            '!externals/bower_components/**/*.js',
+            '!externals/bower_components/**/*.css'
+        ],
+        {
+            read: false,
+            cwd: 'src'
+        })
+    ))
+    .pipe(gulp.dest('./src'));
 });
 
 /*

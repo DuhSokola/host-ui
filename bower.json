@@ -9,6 +9,7 @@
     "angular-translate": "~2.8.1",
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-local-storage": "~0.2.2"
   }
 }

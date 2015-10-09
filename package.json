@@ -29,7 +29,5 @@
     "protractor": "^2.5.0",
     "travis": "^0.1.1",
     "wiredep": "^2.2.2"
-  },
-  "private": true,
-  "main": "server.js"
+  }
 }

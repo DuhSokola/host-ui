@@ -1,10 +1,11 @@
 ;(function() {
-
     'use strict';
 
-    var dependencies = [
+    var dependencies = [,
+        'ngSanitize',
         'pascalprecht.translate',
-        'routeConfig'
+        'hostApp.routes',
+        'hostApp.constants'
     ];
 
     var app = angular.module('hostApp', dependencies);
@@ -13,8 +14,20 @@
 
     });
 
-    app.config(function () {
-
+    app.config(function ($translateProvider) {
+        /**
+         * Translations
+         */
+        $translateProvider.useSanitizeValueStrategy('sanitize');
+        $translateProvider.useStaticFilesLoader({
+            prefix: '../resources/i18n/lang-',
+            suffix: '.json'
+        });
+        $translateProvider.preferredLanguage('de_CH');
     });
+
+    app.controller('hostAppCtrl',['$translate','LANGUAGE', function($translate,LANGUAGE){
+        $translate.use(LANGUAGE.ENGLISH);
+    }]);
 
 }());

@@ -7,7 +7,7 @@ var debug = require('gulp-debug');
 var inject = require('gulp-inject');
 var wiredep = require('wiredep');
 
-gulp.task('bower', function () {
+gulp.task('injectBower', function () {
     wiredep({
         src: './src/index.html',
         directory: './src/externals/bower_components/',
@@ -15,7 +15,7 @@ gulp.task('bower', function () {
     });
 });
 
-gulp.task('inject', function () {
+gulp.task('injectSources', function () {
     var target = gulp.src('./src/index.html');
 
     return target.pipe(inject(gulp.src(
@@ -41,7 +41,7 @@ gulp.task('inject', function () {
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
-gulp.task('serve', function() {
+gulp.task('browserSync', function() {
     browserSync({
         server: {
             baseDir: 'src'
@@ -53,6 +53,7 @@ gulp.task('serve', function() {
 /*
  * Combined Tasks
  */
-gulp.task('injectDeps',['bower','inject']);
+gulp.task('inject',['injectBower','injectSources']);
+gulp.task('serve',['inject','browserSync']);
 
 

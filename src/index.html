@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title ng-cloak>applicationName</title>
+    <title ng-cloak>{{'TITLE' | translate}}</title>
 
     <!-- bower:css -->
     <!-- endbower -->
@@ -14,7 +14,7 @@
 
 </head>
 <body>
-    <div>
+    <div ng-controller="hostAppCtrl">
 
     </div>
 
@@ -26,11 +26,14 @@
     <script src="externals/bower_components/angular-resource/angular-resource.js"></script>
     <script src="externals/bower_components/angular-route/angular-route.js"></script>
     <script src="externals/bower_components/angular-translate/angular-translate.js"></script>
+    <script src="externals/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="externals/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="externals/bower_components/jquery-ui/jquery-ui.js"></script>
     <script src="externals/bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
 
     <!-- inject:js -->
+    <script src="/app/app.constants.js"></script>
     <script src="/app/app.module.js"></script>
     <script src="/app/app.routes.js"></script>
     <script src="/app/components/catalog/catalogCtrl.js"></script>
@@ -46,8 +49,8 @@
     <script src="/app/components/search/searchCtrl.js"></script>
     <script src="/app/components/search/searchDirective.js"></script>
     <script src="/app/shared/factories/someFactory.js"></script>
-    <script src="/app/shared/providers/someProvider.js"></script>
     <script src="/app/shared/services/someService.js"></script>
+    <script src="/app/shared/providers/someProvider.js"></script>
     <!-- endinject -->
 </body>
 </html>

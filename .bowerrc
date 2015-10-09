@@ -1,7 +1,7 @@
 {
   "directory" : "src/externals/bower_components",
   "scripts": {
-    "postinstall": "gulp injectDeps",
-    "postupdate": "gulp injectDeps"
+    "postinstall": "gulp inject",
+    "postupdate": "gulp inject"
   }
 }

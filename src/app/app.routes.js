@@ -3,11 +3,12 @@
 
     var dependencies = [
         'ngRoute'
-    ]
+    ];
 
-    var route = angular.module('routeConfig',dependencies);
+    var route = angular.module('hostApp.routes',dependencies);
 
     route.config(function($routeProvider){
-        console.log("asd2");
+
     });
+
 }());

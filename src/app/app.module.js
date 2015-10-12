@@ -1,20 +1,22 @@
 ;(function() {
     'use strict';
 
-    var dependencies = [,
+    var deps = [
         'ngSanitize',
         'pascalprecht.translate',
+        'hostApp.constants',
         'hostApp.routes',
-        'hostApp.constants'
+        'LocalStorageModule'
     ];
 
-    var app = angular.module('hostApp', dependencies);
+    var app = angular.module('hostApp', deps);
 
-    app.run(function () {
+    app.config(function ($translateProvider,localStorageServiceProvider) {
 
-    });
+        localStorageServiceProvider.setPrefix('hostApp');
+        localStorageServiceProvider.setStorageType('localStorage');
+        localStorageServiceProvider.setStorageCookie(0, '/');
 
-    app.config(function ($translateProvider) {
         /**
          * Translations
          */
@@ -26,6 +28,14 @@
         $translateProvider.preferredLanguage('de_CH');
     });
 
+    app.run(function () {
+
+    });
+
+
+    /**
+     * Example to switch language
+     */
     app.controller('hostAppCtrl',['$translate','LANGUAGE', function($translate,LANGUAGE){
         $translate.use(LANGUAGE.ENGLISH);
     }]);

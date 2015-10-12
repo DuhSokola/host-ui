@@ -4,7 +4,11 @@
     var deps = [
         'ui.router',
         'hostApp.home',
-        'hostApp.catalog'
+        'hostApp.catalog',
+        'hostApp.search',
+        'hostApp.customer',
+        'hostApp.header',
+        'hostApp.footer'
     ];
 
     var route = angular.module('hostApp.routes',deps);
@@ -33,7 +37,6 @@
                 templateUrl: 'app/components/customer/_customer.html',
                 controller: 'CustomerCtrl'
             });
-
     });
 
 }());

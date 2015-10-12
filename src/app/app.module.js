@@ -13,6 +13,9 @@
 
     app.config(function ($translateProvider,localStorageServiceProvider) {
 
+        /**
+         * Setup local storage
+         */
         localStorageServiceProvider.setPrefix('hostApp');
         localStorageServiceProvider.setStorageType('localStorage');
         localStorageServiceProvider.setStorageCookie(0, '/');

@@ -1,7 +1,9 @@
 ;(function(){
     'use strict';
 
-    var dependencies = [];
+    var dependencies = [
+        'hostApp.customerResource'
+    ];
 
     var homeCtrl = angular.module('hostApp.home.ctrl',dependencies);
 
@@ -9,19 +11,22 @@
 
     }]);
 
-    homeCtrl.controller('FormCtrl',['$scope', function($scope){
+    homeCtrl.controller('FormCtrl',['$scope','CustomerResource', function($scope,CustomerResource){
         $scope.name='';
         $scope.prename='';
         $scope.email='';
 
         $scope.sendData = function(){
             if(navigator.onLine){
-                console.log($scope.name);
-                console.log($scope.prename);
-                console.log($scope.email);
+                console.log("IS ONLINE");
             }else{
-                console.log("OFF");
+                console.log("OFFLINE");
             }
+            CustomerResource.getAll(function(){
+                console.log('SUCCESS');
+            },function(){
+                console.log('ERROR');
+            });
         };
     }]);
 

@@ -7,7 +7,7 @@
         'LocalStorageModule',
         'ngSanitize',
         'pascalprecht.translate',
-        'hostApp.customerResource'
+        'ngMockE2E'
     ];
 
     var app = angular.module('hostApp', deps);
@@ -32,10 +32,24 @@
         $translateProvider.preferredLanguage('de_CH');
     });
 
-    app.run(function () {
+    app.run(function($httpBackend){
+        $httpBackend.when('GET', '/api/customers').respond(function(method, url, data){
+            return [200, data];
+        });
+        $httpBackend.when('GET', '/api/catalogs').respond(function(method, url, data){
+            return [200, data];
+        });
+        $httpBackend.when('GET', '/api/hosts').respond(function(method, url, data){
+            return [200, data];
+        });
+
+        $httpBackend.whenGET(/\.html$/).passThrough();
+        $httpBackend.whenGET(/\.json$/).passThrough();
+       /* $httpBackend.whenGET('http://localhost:3000/browser-sync/').passThrough();
+        $httpBackend.whenPOST('http://localhost:3000/browser-sync/').passThrough();
+        $httpBackend.whenPOST('http://localhost:3001/').passThrough();*/
 
     });
-
 
     /**
      * Example to switch language

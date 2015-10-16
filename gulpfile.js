@@ -4,6 +4,36 @@ var gulp = require('gulp'),
     mergeStream = require('merge-stream');
 
 /**
+ * Combined Tasks
+ */
+gulp.task('serve',['inject', 'lint', 'browserSync']);
+gulp.task('lint',['html','css','js']);
+gulp.task('test',['unit']);
+gulp.task('inject',['injectBower','injectSources']);
+
+gulp.task('serve-dev',['injectDev', 'lintDev', 'browserSync-dev']);
+gulp.task('lintDev',['html','css','js-dev']);
+gulp.task('injectDev',['injectBower-dev','injectSources-dev']);
+
+gulp.task('build',['lint','unit', 'dist']);
+gulp.task('serve-build',['inject','build','browserSync-dist']);
+
+
+/**
+ * Tests
+ */
+var jasmine = require('gulp-jasmine'),
+    reporters = require('jasmine-reporters');
+
+gulp.task('unit', function () {
+    return gulp.src('test/unit/*.unit.js')
+        .pipe(jasmine({
+            reporter: new reporters.JUnitXmlReporter()
+        }));
+});
+
+
+/**
  * Build Distribution
  */
 var useref = require('gulp-useref'),
@@ -106,7 +136,11 @@ gulp.task('browserSync', function() {
 gulp.task('browserSync-dev', function() {
     browserSync({
         server: {
-            baseDir: 'src'
+            baseDir: 'src',
+            middleware: function (req, res, next) {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                next();
+            }
         }
     });
     gulp.watch(['app/**/*.js','!app/app.module.js','app/**/*.html', 'externals/**/*.js', 'externals/**/*.html','*.html'], {cwd: 'src'}, reload);
@@ -148,30 +182,4 @@ gulp.task('js-dev', function() {
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
-
-/**
- * Tests
- */
-var jasmine = require('gulp-jasmine'),
-    reporters = require('jasmine-reporters');
-
-gulp.task('unit', function () {
-    return gulp.src('test/unit/*.unit.js')
-        .pipe(jasmine({
-            reporter: new reporters.JUnitXmlReporter()
-        }));
-});
-
-/**
- * Combined Tasks
- */
-gulp.task('inject',['injectBower','injectSources']);
-gulp.task('injectDev',['injectBower-dev','injectSources-dev']);
-gulp.task('lint',['html','css','js']);
-gulp.task('lintDev',['html','css','js-dev']);
-gulp.task('build',['lint','unit', 'dist']);
-gulp.task('serve',['inject', 'lint', 'browserSync']);
-gulp.task('serve-dev',['injectDev', 'lintDev', 'browserSync-dev']);
-gulp.task('serve-dist',['inject','build','browserSync-dist']);
-
 

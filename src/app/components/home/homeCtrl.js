@@ -11,7 +11,7 @@
 
     }]);
 
-    homeCtrl.controller('FormCtrl',['$scope','CustomerResource', function($scope,CustomerResource){
+    homeCtrl.controller('SaveFormCtrl',['$scope','CustomerResource', function($scope,CustomerResource){
         $scope.name='';
         $scope.prename='';
         $scope.email='';
@@ -19,14 +19,33 @@
         $scope.sendData = function(){
             if(navigator.onLine){
                 console.log("IS ONLINE");
-            }else{
+            }else {
                 console.log("OFFLINE");
             }
-            CustomerResource.getAll(function(){
-                console.log('SUCCESS');
-            },function(){
-                console.log('ERROR');
-            });
+
+            CustomerResource.save(
+                {
+                    'name':$scope.name,
+                    'prename':$scope.prename,
+                    'email':$scope.email
+                }
+            );
+
+        };
+    }]);
+
+    homeCtrl.controller('GetFormCtrl',['$scope','CustomerResource', function($scope,CustomerResource){
+        $scope.name='';
+        $scope.prename='';
+        $scope.email='';
+
+        $scope.getData = function(){
+            CustomerResource.getWhere(
+                {
+                    name:$scope.name
+                }
+            );
+
         };
     }]);
 

@@ -1,7 +1,18 @@
 <h1>Home</h1>
-<form ng-controller="FormCtrl">
+<br>
+<h1>Save Data</h1>
+<form ng-controller="SaveFormCtrl">
     <input type="text" name="name" ng-model="name">
     <input type="text" name="prename" ng-model="prename">
     <input type="text" name="email" ng-model="email">
-    <button type="submit" ng-click="sendData()">Submit</button>
+    <button type="submit" ng-click="sendData()">Save</button>
+</form>
+<br>
+<h1>Get Data</h1>
+<br>
+<form ng-controller="GetFormCtrl">
+    <input type="text" name="name" ng-model="name">
+    <input type="text" name="prename" ng-model="prename">
+    <input type="text" name="email" ng-model="email">
+    <button type="submit" ng-click="getData()">Get</button>
 </form>

@@ -8,7 +8,7 @@
     var customerResource = angular.module('hostApp.customerResource',deps);
 
     customerResource.factory('Customer',['$resource',function($resource){
-        return $resource('/api/customers/:id');
+        return $resource('http://localhost:3001/api/customers/:id');
     }]);
 
     customerResource.factory('CustomerResource',['Customer', function(Customer){
@@ -16,29 +16,28 @@
             return Customer.query(success,error);
         };
 
+        var getById = function(id, success,error){
+            return Customer.get({'id': id},success,error);
+        };
+
+        var getWhere = function(query, success, error){
+            return Customer.query({filter:{where:query}},success,error);
+        };
+
+        var save = function(data, success,error){
+            var customer = new Customer();
+            customer.name=data.name;
+            customer.prename=data.prename;
+            customer.email=data.email;
+            return customer.$save().then(success).catch(error);
+        };
+
         return {
-            getAll: getAll
+            getAll: getAll,
+            getById: getById,
+            getWhere: getWhere,
+            save: save
         };
     }]);
-
-/*
-    customerResource.controller('CustomerResourceCtrl',['$scope','Customer',function($scope,Customer){
-        var customer = Customer.get({ id: $scope.id }, function() {
-            console.log(customer);
-        }); // get() returns a single entry
-
-        var customers = Customer.query(function() {
-            console.log(customers);
-        }); //query() returns all the entries
-
-        $scope.customer = new Customer(); //You can instantiate resource class
-
-        $scope.customer.data = 'some data';
-
-        Customer.save($scope.customer, function() {
-            //data saved. do something here.
-        }); //saves an entry. Assuming $scope.entry is the Entry object
-
-    }]);*/
 
 }());

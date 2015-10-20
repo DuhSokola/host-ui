@@ -16,6 +16,8 @@
             return Customer.query(success,error);
         };
 
+        C
+
         var getById = function(id, success,error){
             return Customer.get({'id': id},success,error);
         };

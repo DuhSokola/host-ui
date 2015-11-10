@@ -82,8 +82,8 @@ gulp.task('injectSources', function () {
             '!app/app.module-mock.js',
             'app/**/*.css',
             'assets/style/**/*.css',
-            '!externals/bower_components/**/*.js',
-            '!externals/bower_components/**/*.css'
+            '!externals/bower_components/**/*.css',
+            '!externals/bower_components/**/*.js'
         ],
         {
             read: false,
@@ -131,7 +131,7 @@ gulp.task('browserSync', function() {
             baseDir: 'src'
         }
     });
-    gulp.watch(['app/**/*.js','!app/app.module-mock.js','app/**/*.html', 'externals/**/*.js', 'externals/**/*.html','*.html'], {cwd: 'src'}, reload);
+    gulp.watch(['app/**/*.js','!app/app.module-mock.js','app/**/*.html', 'externals/**/*.js', 'externals/**/*.html','*.html', 'assets/i18n/*.json'], {cwd: 'src'}, reload);
 });
 gulp.task('browserSync-dev', function() {
     browserSync({

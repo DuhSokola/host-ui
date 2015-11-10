@@ -7,7 +7,8 @@
         'LocalStorageModule',
         'ngSanitize',
         'pascalprecht.translate',
-        'hostApp.customerResource'
+        'hostApp.customerResource',
+        'ui.select'
     ];
 
     var app = angular.module('hostApp', deps);
@@ -24,7 +25,7 @@
         /**
          * Translations
          */
-        $translateProvider.useSanitizeValueStrategy('sanitize');
+        $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
         $translateProvider.useStaticFilesLoader({
             prefix: '../assets/i18n/lang-',
             suffix: '.json'
@@ -32,8 +33,12 @@
         $translateProvider.preferredLanguage('de_CH');
     });
 
-    app.run(function () {
-
+    app.run(function ($templateCache) {
+        /*
+        TODO
+        Definieren obs notwendig ist
+         */
+        //$templateCache.put("selectize/select.tpl.html","<div class=\"ui-select-container selectize-control single\" ng-class=\"{\'open\': $select.open}\"><div class=\"selectize-input\" ng-class=\"{\'focus\': $select.open, \'disabled\': $select.disabled, \'selectize-focus\' : $select.focus}\" ng-click=\"$select.activate()\"><div class=\"ui-select-match\"></div><input type=\"text\" autocomplete=\"false\" tabindex=\"-1\" class=\"ui-select-search ui-select-toggle\" ng-click=\"$select.toggle($event)\" placeholder=\"{{$select.placeholder}}\" ng-model=\"$select.search\" ng-hide=\"($select.selected && !$select.open)\" ng-disabled=\"$select.disabled\" aria-label=\"{{ $select.baseTitle }}\"></div><div class=\"ui-select-choices\"></div></div>");
     });
 
 

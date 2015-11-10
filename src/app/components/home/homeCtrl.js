@@ -8,45 +8,48 @@
     var homeCtrl = angular.module('hostApp.home.ctrl',dependencies);
 
     homeCtrl.controller('HomeCtrl',['$scope',function($scope){
+    }]);
+
+    homeCtrl.controller('LoginCtrl',['$scope','CustomerResource', function($scope,CustomerResource){
 
     }]);
 
-    homeCtrl.controller('SaveFormCtrl',['$scope','CustomerResource', function($scope,CustomerResource){
-        $scope.name='';
-        $scope.prename='';
-        $scope.email='';
+    homeCtrl.controller('SelectBrand',['$scope', '$translate', function($scope,$translate) {
+        $scope.disabled = undefined;
 
-        $scope.sendData = function(){
-            if(navigator.onLine){
-                console.log("IS ONLINE");
-            }else {
-                console.log("OFFLINE");
-            }
-
-            CustomerResource.save(
-                {
-                    'name':$scope.name,
-                    'prename':$scope.prename,
-                    'email':$scope.email
-                }
-            );
-
+        $scope.enable = function() {
+            $scope.disabled = false;
         };
-    }]);
 
-    homeCtrl.controller('GetFormCtrl',['$scope','CustomerResource', function($scope,CustomerResource){
-        $scope.name='';
-        $scope.prename='';
-        $scope.email='';
-
-        $scope.getData = function(){
-            CustomerResource.getWhere(
-                {
-                    name:$scope.name
-                }
-            );
-
+        $scope.disable = function() {
+            $scope.disabled = true;
         };
+
+        $scope.clear = function() {
+            $scope.country.selected = undefined;
+        };
+
+        $scope.selectedCarBrand = {};
+        $scope.carBrands = [];
+
+        $translate(['AUDI_SELECT','SEAT_SELECT', 'SKODA_SELECT', 'VW_SELECT']).then(function (translation) {
+            $scope.carBrands = [
+                {name:translation['AUDI_SELECT']},
+                {name:translation['SEAT_SELECT']},
+                {name:translation['SKODA_SELECT']},
+                {name:translation['VW_SELECT']}
+            ];
+            //TODO Brauchts VW as default?
+        });
     }]);
 
+
+    homeCtrl.directive('ui-select-wrapper',function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            template: '<div class="my-div" style="background-color:red" ng-transclude></div>'
+        }
+    });
 }());

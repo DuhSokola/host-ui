@@ -1,18 +1,35 @@
-<h1>Home</h1>
-<br>
-<h1>Save Data</h1>
-<form ng-controller="SaveFormCtrl">
-    <input type="text" name="name" ng-model="name">
-    <input type="text" name="prename" ng-model="prename">
-    <input type="text" name="email" ng-model="email">
-    <button type="submit" ng-click="sendData()">Save</button>
-</form>
-<br>
-<h1>Get Data</h1>
-<br>
-<form ng-controller="GetFormCtrl">
-    <input type="text" name="name" ng-model="name">
-    <input type="text" name="prename" ng-model="prename">
-    <input type="text" name="email" ng-model="email">
-    <button type="submit" ng-click="getData()">Get</button>
-</form>
+<div class="login" ng-controller="LoginCtrl">
+    <form ng-form="">
+        <div class="form-group">
+            <label for="hostName" translate="HOST_LABEL"></label>
+            <input type="text" class="form-control" id="hostName" placeholder="Max Muster" required>
+        </div>
+
+        <div class="form-group" ng-controller="SelectBrand">
+            <label for="selectBrand" translate="BRAND_SELECT_PLACEHOLDER"></label>
+            <ui-select id="selectBrand" ng-model="selectedCarBrand.selected" theme="selectize" search-enabled="false" ng-required="true">
+                <ui-select-match placeholder="{{'BRAND_SELECT_PLACEHOLDER'|translate}}">{{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="carBrand in carBrands | filter: $select.search">
+                    <span ng-bind-html="carBrand.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+
+
+<!--
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" translate="CHOOSE_CARBRAND">
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li translate="AUDI_DROPDOWN_LABEL"></li>
+        <li translate="SEAT_DROPDOWN_LABEL"></li>
+        <li translate="SKODA_DROPDOWN_LABEL"></li>
+        <li translate="VW_DROPDOWN_LABEL"></li>
+    </ul>
+</div>-->

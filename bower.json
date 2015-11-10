@@ -12,9 +12,19 @@
     "bootstrap": "~3.3.4",
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "ui-select": "angular-ui-select#~0.13.2"
   },
-  "devDependencies":{
+  "devDependencies": {
     "angular-mocks": "~1.4.7"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
   }
 }

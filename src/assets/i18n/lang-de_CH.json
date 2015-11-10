@@ -1,3 +1,9 @@
 {
-  "TITLE" : "CH"
+  "TITLE" : "CH",
+  "HOST_LABEL" : "Erfassende Person",
+  "BRAND_SELECT_PLACEHOLDER":"Marke wählen",
+  "AUDI_SELECT":"Audi",
+  "SEAT_SELECT":"Seat",
+  "SKODA_SELECT":"Skoda",
+  "VW_SELECT":"Volkswagen"
 }

@@ -45,8 +45,17 @@
     /**
      * Example to switch language
      */
-    app.controller('hostAppCtrl',['$translate','LANGUAGE','CustomerResource', function($translate,LANGUAGE){
-        $translate.use(LANGUAGE.ENGLISH);
+    app.controller('hostAppCtrl',['$scope', function($scope){
+        $scope.globals = {};
+        $scope.globals.hostData = undefined;
+        $scope.globals.cutomerData = undefined;
+
+        $scope.globals.printAllGlobals = function() {
+            console.log('---===START GLOBALS===---');
+            console.log($scope.globals.hostData);
+            console.log($scope.globals.cutomerData);
+            console.log('---===END GLOBALS===---');
+        }
     }]);
 
 }());

@@ -1,9 +1,15 @@
 {
   "TITLE" : "CH",
   "HOST_LABEL" : "Erfassende Person",
-  "BRAND_SELECT_PLACEHOLDER":"Marke wählen",
-  "AUDI_SELECT":"Audi",
-  "SEAT_SELECT":"Seat",
-  "SKODA_SELECT":"Skoda",
-  "VW_SELECT":"Volkswagen"
+  "BRAND_SELECT_LABEL":"Marke",
+  "CAMPAIGN_SELECT_LABEL":"Kampagne",
+  "CAR_AUDI_SELECT":"Audi",
+  "CAR_SEAT_SELECT":"Seat",
+  "CAR_SKODA_SELECT":"Skoda",
+  "CAR_VW_SELECT":"Volkswagen",
+  "CAMPAIGN_GENEVA_SELECT":"Autosalon Genf 2016",
+  "CAMPAIGN_ZURICH_SELECT":"Autosalon Zürich 2016",
+  "ERROR_LOGIN_HOSTNAME_EMPTY":"Erfassende Person wurde nicht definiert",
+  "ERROR_LOGIN_CARBRAND_EMPTY":"Marke wurde nicht definiert",
+  "ERROR_LOGIN_CAMPAIGN_EMPTY":"Kampaigne wurde nicht definiert"
 }

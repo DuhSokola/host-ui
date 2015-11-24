@@ -1,13 +1,34 @@
-<div class="login" ng-controller="LoginCtrl">
-    <form ng-form="">
+<div id="login" ng-controller="LoginCtrl">
+
+    <div class="alert alert-danger" role="alert" ng-show="formIsSubmitted && !hostName">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span translate="ERROR_LOGIN_HOSTNAME_EMPTY"></span>
+    </div>
+    <div class="alert alert-danger" role="alert" ng-show="formIsSubmitted && !selectedCarBrand">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span translate="ERROR_LOGIN_CARBRAND_EMPTY"></span>
+    </div>
+    <div class="alert alert-danger" role="alert" ng-show="formIsSubmitted && !selectedCampaign">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span translate="ERROR_LOGIN_CAMPAIGN_EMPTY"></span>
+    </div>
+
+    <form novalidate name="loginForm" ng-submit="submit()" autocomplete="off">
+
         <div class="form-group">
             <label for="hostName" translate="HOST_LABEL"></label>
-            <input type="text" class="form-control" id="hostName" placeholder="Max Muster" required>
+            <input type="text" class="form-control" id="hostName" ng-model="hostName" list="comicstitle"
+                   placeholder="Max Muster" required>
         </div>
 
-        <div class="form-group" ng-controller="SelectBrand">
-            <label for="selectBrand" translate="BRAND_SELECT_PLACEHOLDER"></label>
-            <ui-select id="selectBrand" ng-model="selectedCarBrand.selected" theme="selectize" search-enabled="false" ng-required="true">
+        <datalist id="comicstitle">
+            <option data-ng-repeat="ttl in titles" value="{{ttl}}">
+        </datalist>
+
+        <div class="form-group" ng-controller="SelectBrandCtrl">
+            <label translate="BRAND_SELECT_LABEL"></label>
+            <ui-select id="selectBrand" ng-model="selectedCarBrand.selected" on-select="passOnParentScope($model)"
+                       theme="selectize" search-enabled="false" ng-required="true">
                 <ui-select-match placeholder="{{'BRAND_SELECT_PLACEHOLDER'|translate}}">{{$select.selected.name}}
                 </ui-select-match>
                 <ui-select-choices repeat="carBrand in carBrands | filter: $select.search">
@@ -16,11 +37,22 @@
             </ui-select>
         </div>
 
+        <div class="form-group" ng-controller="SelectCampaignCtrl">
+            <label translate="CAMPAIGN_SELECT_LABEL"></label>
+            <ui-select id="selectCampaign" ng-model="selectedCampaign.selected" on-select="passOnParentScope($model)"
+                       theme="selectize" search-enabled="false" ng-required="true">
+                <ui-select-match placeholder="{{'CAMPAIGN_SELECT_LABEL'|translate}}">{{$select.selected.name}}
+                </ui-select-match>
+                <ui-select-choices repeat="campaign in campaigns | filter: $select.search">
+                    <span ng-bind-html="campaign.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
+
 </div>
-
-
 <!--
 <div class="dropdown">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" translate="CHOOSE_CARBRAND">
